@@ -37,7 +37,7 @@ def custom_score(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
-    return depth_score(game, player)
+    return depth_score(game,player)
 
 def closeToCenterAndMaxMoves_score(game, player):
     """Calculate the heuristic value of a game state from the point of view
@@ -76,7 +76,6 @@ def closeToCenterAndMaxMoves_score(game, player):
     own_moves = len(game.get_legal_moves(player))
 
     # Return the value associated to the current state of the board: distance minimization combined with maximization of allowed moves
-    # The negation is to apply minimax in a node, for a max node values closer to 0 are preferred than bigger negative distances. for a min node is the opposite.
     return -float(math.sqrt((position[1] + 1 - game.width / 2.0) ** 2 + (position[0] + 1 - game.height / 2.0) ** 2)) + (own_moves)
 
 def closeToCenter_score(game, player):
@@ -169,11 +168,6 @@ def depth_score(game, player):
         return float("inf")
 
     #Sample code recommended by Udacity reviewer
-    """
-    I analyzed the depth_score algorithm and it seems like a good heuristic.
-    However, In tournament it gave worse results than my worst heuristic,
-    for that reason I didn't include it in the report
-    """
     visited = set()
     depth = 4
     path = set(game.get_legal_moves(player))
